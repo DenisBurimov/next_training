@@ -6,7 +6,7 @@ export default function Home() {
       <h1 className="text-center">Home Page</h1>
       <div className="flex justify-center">
         <Link className="text-blue-700 underline" href="/posts">All Posts</Link>
-
+        <Link className="text-blue-700 underline" href="/form">Login</Link>
       </div>
     </div>
   );
