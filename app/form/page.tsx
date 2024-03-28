@@ -5,21 +5,31 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import * as yup from "yup";
 import { userSchema } from "../validations/UserValidations";
+import { useFormik } from "formik";
+import clsx from "clsx";
 
 export default function LoginForm() {
-  const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+  const formik = useFormik({
+    initialValues: {
+      email: "",
+      password: "",
+      confirmPassword: "",
+    },
+    validationSchema: userSchema,
+    onSubmit: async (values, actions) => {
+      console.log("formik:", JSON.stringify(values));
+      actions.resetForm();
+    },
   });
-
+  console.log("formik:", formik);
   // const router = useRouter();
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+  // const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   setFormData({
+  //     ...formData,
+  //     [e.target.name]: e.target.value,
+  //   });
+  // };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -39,36 +49,69 @@ export default function LoginForm() {
     // } catch (error) {
     //     console.error('Error occurred:', error);
     // }
-    console.log("handleSubmit:", JSON.stringify(formData));
+    // const isValid = await userSchema.isValid(formData);
+    // console.log("handleSubmit:", JSON.stringify(formData));
   };
 
   return (
     <div>
       <h1 className="text-center">Login Page</h1>
       <div className="flex justify-center">
-        <form className="p-5 border border-black" onSubmit={handleSubmit}>
-          <div className="flex flex-col">
+        <form className="p-5 border border-black" onSubmit={formik.handleSubmit}>
+          <div className="flex flex-col gap-2">
             <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
               name="email"
-              className="border border-black"
-              value={formData.email}
-              onChange={handleChange}
+              className={clsx(
+                "border",
+                formik.errors.email ?? formik.touched.email ? "border-red-500" : "border-black"
+              )}
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
+            {formik.errors.email && formik.touched.email && <p className="text-red-500">{formik.errors.email}</p>}
 
             <label htmlFor="password">Password</label>
             <input
               type="password"
               id="password"
               name="password"
-              className="border border-black"
-              value={formData.password}
-              onChange={handleChange}
+              className={clsx(
+                "border",
+                formik.errors.password && formik.touched.password ? "border-red-500" : "border-black"
+              )}
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
 
-            <button type="submit">Submit</button>
+            {formik.errors.password && formik.touched.password && (
+              <p className="text-red-500">{formik.errors.password}</p>
+            )}
+
+            <label htmlFor="confirmPassword">Confirm Password</label>
+            <input
+              type="password"
+              id="confirmPassword"
+              name="confirmPassword"
+              className={clsx(
+                "border",
+                formik.errors.confirmPassword && formik.touched.confirmPassword ? "border-red-500" : "border-black"
+              )}
+              value={formik.values.confirmPassword}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
+            />
+            {formik.errors.confirmPassword && formik.touched.confirmPassword && (
+              <p className="text-red-500">{formik.errors.confirmPassword}</p>
+            )}
+
+            <button disabled={formik.isSubmitting} type="submit" className="border">
+              Submit
+            </button>
           </div>
         </form>
       </div>
