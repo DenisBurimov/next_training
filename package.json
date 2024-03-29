@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "css": "tailwindcss -i ./app/globals.css -o ./next/static/css/layout.css --minify",
+    "css-watch": "tailwindcss -i ./app/globals.css -o ./next/static/css/layout.css --watch",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
