@@ -11,10 +11,10 @@ export default async function Home() {
         <>
           <div>
             <h1 className="text-center">Home Page</h1>
-            <h2>Hi, {session?.user}</h2>
+            <h2>Hi, {session.user?.name}</h2> {/* Render name property */}
             <div className="flex justify-center">
-              <Link className="text-blue-700 underline" href="/posts">
-                All Posts
+              <Link href="/posts">
+                <a className="text-blue-700 underline">All Posts</a>
               </Link>
             </div>
           </div>
