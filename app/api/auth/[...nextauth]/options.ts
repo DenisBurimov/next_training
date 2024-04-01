@@ -23,31 +23,26 @@ export const options: NextAuthOptions = {
     CredentialsProvider({
       name: "Credentials",
       credentials: {
-        username: { label: "Username", type: "text", placeholder: "jsmith" },
+        username: { label: "Username", type: "text", placeholder: "Smith" },
         password: {
           label: "Password",
           type: "password",
           placeholder: "password",
         },
-        async authorize(credentials: CredentialInput): Promise<User | null> {
-          // Fetch user from database
-          // Docs: https://next-auth.js.org/providers/credentials
-          const user = {
-            id: "1",
-            name: "J Smith",
-            email: "jsmith@example.com",
-            password: "password",
-          };
+      },
+      async authorize(credentials) {
+        const user = {
+          id: "1",
+          name: "Smith",
+          email: "jsmith@example.com",
+          password: "password",
+        };
 
-          if (
-            credentials?.username === user.name &&
-            credentials?.password === user.password
-          ) {
-            return user;
-          } else {
-            return null;
-          }
-        },
+        if (credentials?.username === user.name && credentials?.password === user.password) {
+          return Promise.resolve(user);
+        } else {
+          return Promise.resolve(null);
+        }
       },
     }),
   ],
