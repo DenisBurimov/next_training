@@ -1,24 +1,20 @@
 import type { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
+import DiscordProvider from "next-auth/providers/discord";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-}
-
-interface CredentialInput {
-  username: string;
-  password: string;
-}
+const scopes = ["identify"].join(" ");
 
 export const options: NextAuthOptions = {
   providers: [
     GithubProvider({
       clientId: process.env.GITHUB_CLIENT_ID as string,
       clientSecret: process.env.GITHUB_CLIENT_SECRET as string,
+    }),
+    DiscordProvider({
+      clientId: process.env.DISCORD_CLIENT_ID as string,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET as string,
+      authorization: { params: { scope: scopes } },
     }),
     CredentialsProvider({
       name: "Credentials",
