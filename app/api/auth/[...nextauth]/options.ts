@@ -2,18 +2,6 @@ import type { NextAuthOptions } from "next-auth";
 import GithubProvider from "next-auth/providers/github";
 import CredentialsProvider from "next-auth/providers/credentials";
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-  password: string;
-}
-
-interface CredentialInput {
-  username: string;
-  password: string;
-}
-
 export const options: NextAuthOptions = {
   providers: [
     GithubProvider({

@@ -1,10 +1,13 @@
 import Link from "next/link";
-import { options } from "./api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth/next";
+import { Session } from "next-auth";
 
-export default async function Home() {
-  const session = await getServerSession(options);
+interface IAuthComponent {
+  session: Session | null;
+}
+
+export const AuthComponent: React.FC<IAuthComponent> = async ({ session }) => {
   console.log("session", session);
+
   return (
     <>
       {session ? (
@@ -27,4 +30,4 @@ export default async function Home() {
       )}
     </>
   );
-}
+};
