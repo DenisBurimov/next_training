@@ -57,7 +57,7 @@ export default function LoginForm() {
     <div>
       <h1 className="text-center">Login Page</h1>
       <div className="flex justify-center">
-        <form className="p-5 border border-black" onSubmit={formik.handleSubmit}>
+        <form className="p-5 border border-black rounded-xl" onSubmit={formik.handleSubmit}>
           <div className="flex flex-col gap-2">
             <label htmlFor="email">Email</label>
             <input
