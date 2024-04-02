@@ -14,13 +14,16 @@ export default function CutdownMain() {
   };
   return (
     <div className="relative flex flex-col col-span-9">
-      <Image
-        className="absolute z-0 w-full h-full"
-        src={"/cs.jpeg"}
-        width={3000}
-        height={1500}
-        alt="game image"
-      ></Image>
+      {games.map((game, i) => (
+        <Image
+          key={game.id}
+          className={clsx("absolute z-0 w-full h-full", i !== currentTab && "hidden")}
+          src={game.image_path}
+          width={3000}
+          height={1500}
+          alt="game image"
+        ></Image>
+      ))}
       {games.map((game, i) => (
         <Image
           key={game.id}
