@@ -41,7 +41,7 @@ export default function CutdownMain() {
                 <span className="text-sm text-gray-500">{formatDate(game.date)}</span>
                 <div className="flex gap-2">
                   <Image
-                    className="absolute w-full z-0"
+                    className="absolute z-0"
                     src={game.logo_team_1}
                     width={50}
                     height={50}
