@@ -14,26 +14,28 @@ export default function CutdownMain() {
   };
   return (
     <div className="relative flex flex-col col-span-9">
-      {games.map((game, i) => (
-        <Image
-          key={game.id}
-          className={clsx("absolute z-0 w-full h-full", i !== currentTab && "hidden")}
-          src={game.image_path}
-          width={3000}
-          height={1500}
-          alt="game image"
-        ></Image>
-      ))}
-      {games.map((game, i) => (
-        <Image
-          key={game.id}
-          className={clsx("relative", i !== currentTab && "hidden")}
-          src={game.image_path}
-          width={3000}
-          height={1500}
-          alt="game image"
-        ></Image>
-      ))}
+      {games.map((game, i) => {
+        return (
+          <>
+            <Image
+              key={game.id}
+              className={clsx("absolute z-0 w-full h-full", i !== currentTab && "hidden")}
+              src={game.image_path}
+              width={3000}
+              height={1500}
+              alt="game image"
+            ></Image>
+            <Image
+              key={game.id}
+              className={clsx("relative", i !== currentTab && "hidden")}
+              src={game.image_path}
+              width={3000}
+              height={1500}
+              alt="game image"
+            ></Image>
+          </>
+        );
+      })}
       <div className="relative flex backdrop-blur-xl border-t border-white border-opacity-5 bg-grey-800/20">
         {games.map((game, i) => {
           return (
