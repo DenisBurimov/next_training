@@ -14,20 +14,22 @@ export default function CutdownMain() {
     setCurrentTab(index);
   };
   return (
-    // <div>
-    //   <div className="">
-    //     <Image src={"/cs.png"} width={1000} height={500} alt="game image"></Image>
-    //   </div>
-    // </div>
     <>
-      <div className="flex flex-col col-span-9">
-        <Image src={"/cs.jpeg"} width={1000} height={500} alt="game image"></Image>
-        <div className="flex">
+      <div className="relative flex flex-col col-span-9">
+        <Image
+          className="absolute z-0 w-full h-full"
+          src={"/cs.jpeg"}
+          width={3000}
+          height={1500}
+          alt="game image"
+        ></Image>
+        <Image className="relative" src={"/cs.jpeg"} width={3000} height={1500} alt="game image"></Image>
+        <div className="relative flex backdrop-blur-xl border-t border-white border-opacity-5 bg-grey-800/20">
           {games.map((game, i) => {
             return (
               <div
                 key={game.id}
-                className="h-40 p-2 w-full flex flex-col gap-1 border cursor-pointer"
+                className="h-40 p-2 w-full flex flex-col gap-1 cursor-pointer"
                 onClick={() => toggleTab(i)}
               >
                 {/* <Image
