@@ -6,6 +6,8 @@ import { games } from "@/app/lib/data";
 import { formatDate } from "@/app/lib/utils";
 import clsx from "clsx";
 import Countdown from "react-countdown";
+import { Counter } from "./counter";
+import CountdownRendererFn from "react-countdown";
 
 export default function CutdownMain() {
   const [currentTab, setCurrentTab] = useState(0);
@@ -23,28 +25,10 @@ export default function CutdownMain() {
     if (completed) {
       return <span>Game is live</span>;
     } else {
-      return (
-        <div className="flex gap-6">
-          <div className="flex flex-col justify-center items-center">
-            <span className="text-3xl">{days}</span>
-            <span className="text-sm text-gray-400">days</span>
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <span className="text-3xl">{hours}</span>
-            <span className="text-sm text-gray-400">hours</span>
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <span className="text-3xl">{minutes}</span>
-            <span className="text-sm text-gray-400">mins</span>
-          </div>
-          <div className="flex flex-col justify-center items-center">
-            <span className="text-3xl">{seconds}</span>
-            <span className="text-sm text-gray-400">secs</span>
-          </div>
-        </div>
-      );
+      return <Counter days={days} hours={hours} minutes={minutes} seconds={seconds} />;
     }
   };
+
   return (
     <div className="relative flex flex-col col-span-12">
       {games.map((game, i) => {
@@ -69,11 +53,13 @@ export default function CutdownMain() {
                 <span className="text-gray-500">vs</span>
                 <Image className="" src={game.logo_team_2} width={50} height={50} alt="game image"></Image>
               </div>
-              {isClient && (
-                <div>
+              <div>
+                {isClient ? (
                   <Countdown date={game.date} renderer={renderer} />
-                </div>
-              )}
+                ) : (
+                  <Counter days={0} hours={0} minutes={0} seconds={0} hidden={"invisible"} />
+                )}
+              </div>
               <button className="py-2 px-4 text-black bg-white rounded-lg hover:bg-gray-400 transition-colors duration-200">
                 Join The Chat
               </button>
