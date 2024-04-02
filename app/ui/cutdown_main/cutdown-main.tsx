@@ -39,11 +39,11 @@ export default function CutdownMain() {
                 ></Image> */}
                 <span className="text-sm">{game.name_tournament}</span>
                 <span className="text-sm text-gray-500">{formatDate(game.date)}</span>
-                <div className="flex gap-2">
+                <div className="flex gap-4 items-center">
                   <Image className="" src={game.logo_team_1} width={50} height={50} alt="game image"></Image>
                   <span className="text-gray-500">{game.name_team_1}</span>
                 </div>
-                <div className="flex gap-2">
+                <div className="flex gap-4 items-center">
                   <Image className="" src={game.logo_team_2} width={50} height={50} alt="game image"></Image>
                   <span className="text-gray-500">{game.name_team_2}</span>
                 </div>
