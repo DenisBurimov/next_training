@@ -1,6 +1,6 @@
 export function formatDate(dateString: string) {
   const date = new Date(dateString);
-  const options = {
+  const options: Intl.DateTimeFormatOptions = {
     hour: "numeric",
     minute: "2-digit",
     day: "numeric",

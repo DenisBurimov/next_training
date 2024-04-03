@@ -4,15 +4,13 @@ RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
-COPY package-lock.json .
+COPY package*.json ./
 
-COPY package.json .
-
-RUN yarn
+RUN npm install
 
 COPY . .
 
-RUN yarn build
+RUN npm run build
 
 EXPOSE 3000
 
