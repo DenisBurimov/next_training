@@ -1,9 +1,8 @@
 services:
 
-  app:
+  next_training:
     build: .
-    image: nextjs
     ports:
-      - 127.0.0.1:3000:3000
+      - 127.0.0.1:${LOCAL_WEB_PORT:-3000}:3000
     env_file:
       - .env
