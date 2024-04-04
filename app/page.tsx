@@ -1,30 +1,9 @@
-import Link from "next/link";
-import { options } from "./api/auth/[...nextauth]/options";
-import { getServerSession } from "next-auth/next";
+import CountdownMain from "./ui/countdown_main/countdown-main";
 
-export default async function Home() {
-  const session = await getServerSession(options);
-  console.log("session", session);
+export default function Home() {
   return (
-    <>
-      {session ? (
-        <>
-          <div>
-            <h1 className="text-center">Home Page</h1>
-            <h2>Hi, {session.user?.name}</h2>
-            <div className="flex justify-center">
-              <Link href="/posts">All Posts</Link>
-            </div>
-          </div>
-        </>
-      ) : (
-        <>
-          <p>You are not signed in</p>
-          <p>
-            <Link href="/api/auth/signin">Sign in</Link>
-          </p>
-        </>
-      )}
-    </>
+    <div className="max-w-7xl mx-auto grid grid-cols-12 gap-4">
+      <CountdownMain />
+    </div>
   );
 }

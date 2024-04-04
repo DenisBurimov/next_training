@@ -1,4 +1,16 @@
-export const Counter = ({ days, hours, minutes, seconds, hidden = "" }) => {
+export const Counter = ({
+  days,
+  hours,
+  minutes,
+  seconds,
+  hidden = "",
+}: {
+  days: number;
+  hours: number;
+  minutes: number;
+  seconds: number;
+  hidden?: string;
+}) => {
   return (
     <div className={`flex gap-6 ${hidden}`}>
       <div className="flex flex-col justify-center items-center">

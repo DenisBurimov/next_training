@@ -7,9 +7,8 @@ import { formatDate } from "@/app/lib/utils";
 import clsx from "clsx";
 import Countdown from "react-countdown";
 import { Counter } from "./counter";
-import CountdownRendererFn from "react-countdown";
 
-export default function CutdownMain() {
+export default function CountdownMain() {
   const [currentTab, setCurrentTab] = useState(0);
   const [isClient, setIsClient] = useState(false);
 
@@ -21,7 +20,19 @@ export default function CutdownMain() {
     setCurrentTab(index);
   };
 
-  const renderer = ({ days, hours, minutes, seconds, completed }) => {
+  const renderer = ({
+    days,
+    hours,
+    minutes,
+    seconds,
+    completed,
+  }: {
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+    completed: boolean;
+  }) => {
     if (completed) {
       return <span>Game is live</span>;
     } else {
@@ -41,7 +52,7 @@ export default function CutdownMain() {
               width={3000}
               height={1500}
               alt="game image"
-              loading="lazy"
+              priority={true}
             ></Image>
             <div className="relative py-12 flex flex-col items-center justify-center gap-8">
               <h2 className="text-xl">{game.name_tournament}</h2>
