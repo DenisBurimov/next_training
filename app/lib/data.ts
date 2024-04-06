@@ -7,7 +7,7 @@ export const games: Game[] = [
     name_team_1: "Team A",
     name_team_2: "Team B",
     date: "2024-04-05T15:00:00Z",
-    image_path: "/cs.jpeg",
+    image_path: "/cs.webp",
     logo_team_1: "/team_1.png",
     logo_team_2: "/team_2.png",
   },

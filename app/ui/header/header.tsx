@@ -2,6 +2,7 @@
 
 import { useSession, signIn, signOut } from "next-auth/react";
 import { HeaderNavBar } from "./nav-links";
+import { HeaderDropdown } from "./header-dropdown";
 
 const Header = () => {
   console.log("console.log Header");
@@ -9,6 +10,7 @@ const Header = () => {
   return (
     <header className="py-4 px-8 flex justify-between text-white">
       <HeaderNavBar />
+      <HeaderDropdown />
       <div>
         {session ? (
           <button

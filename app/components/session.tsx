@@ -6,8 +6,6 @@ interface IAuthComponent {
 }
 
 export const AuthComponent: React.FC<IAuthComponent> = async ({ session }) => {
-  console.log("session", session);
-
   return (
     <>
       {session ? (
