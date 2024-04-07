@@ -39,7 +39,10 @@ export const options: NextAuthOptions = {
           password: "password",
         };
 
-        if (credentials?.username === user.name && credentials?.password === user.password) {
+        if (
+          credentials?.username === user.name &&
+          credentials?.password === user.password
+        ) {
           return Promise.resolve(user);
         } else {
           return Promise.resolve(null);

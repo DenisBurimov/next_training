@@ -34,7 +34,7 @@ export default function CountdownMain() {
     completed: boolean;
   }) => {
     if (completed) {
-      return <span>Game is live</span>;
+      return <Counter days={0} hours={0} minutes={0} seconds={0} />;
     } else {
       return <Counter days={days} hours={hours} minutes={minutes} seconds={seconds} />;
     }
